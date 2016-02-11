@@ -6,6 +6,7 @@ define([
 ], function(_, hr, dialogs, i18n) {
     var Settings = hr.Model.extend({
         defaults: {
+            color: "divergent",
             language: "en"
         },
 
@@ -13,11 +14,15 @@ define([
             hr.Storage.set("settings", this.toJSON());
         },
         load: function() {
-            this.reset(hr.Storage.get("settings"));
+            var settings = hr.Storage.get("settings")
+            if (settings) {
+                this.reset(settings);
+            }
         },
 
         dialog: function() {
             var that = this;
+            var curLocale = i18n.translations[i18n.currentLocale()];
 
             return dialogs.fields(i18n.t("settings.title"), {
                 "language": {
@@ -26,6 +31,16 @@ define([
                     options: _.chain(i18n.translations)
                         .map(function(t, lang) {
                             return [lang, t.language];
+                        })
+                        .object()
+                        .value()
+                }, 
+                "color": {
+                    label: i18n.t("settings.color.label"),
+                    type: "select",
+                    options: _.chain(curLocale.settings.color.scheme)
+                        .map(function(scheme, scheme_name) {
+                            return [scheme_name, scheme];
                         })
                         .object()
                         .value()

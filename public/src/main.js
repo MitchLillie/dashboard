@@ -33,7 +33,8 @@ require([
             "click .action-visualization-create": "createVisualization",
             "click .action-alert-manage": "manageAlerts",
             "click .action-alert-create": "createAlert",
-            "click .action-settings": "settings"
+            "click .action-settings": "settings",
+            "click .action-wipe": "wipe"
         },
         routes: {
             "report/:id": "routeReport"
@@ -161,6 +162,11 @@ require([
                 return that.reports.loadAll();
             })
             .then(function() {
+                if (that.reports.length > 0) {
+                    that.setReport(that.reports.first());
+                } else {
+                    window.location = '/';
+                }
                 that.update();
             })
             .fail(dialogs.error);
@@ -285,6 +291,17 @@ require([
             });
         },
 
+        wipe: function() {
+            return dialogs.confirm(i18n.t("wipe.title"))
+            .then(function() {
+                return api.execute("delete:data")
+                .fail(dialogs.error);
+            })
+            .then(function() {
+                window.location = '/';
+            });
+        },
+
         routeReport: function(rId) {
             var report = this.reports.get(rId);
             if (!report) {
@@ -297,4 +314,5 @@ require([
 
     var app = new Application();
     app.reports.loadAll().then(initResources).then(app.run.bind(app), dialogs.error);
+
 });

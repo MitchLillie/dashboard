@@ -9,7 +9,8 @@
         "editReport": "Edit report",
         "help": "Help",
         "removeReport": "Remove report",
-        "settings": "Settings"
+        "settings": "Settings",
+        "wipe": "Wipe database"
     },
     "reports": {
         "empty": {
@@ -139,6 +140,13 @@
                 "eventName": "Event",
                 "type": "Type"
             }
+        },
+        "remove": {
+            "title": "Do you really want to remove this visualization?"
+        },
+        "download": {
+            "title": "Export data",
+            "message": "Please select a format for download:"
         }
     },
     "visualizations": {
@@ -207,6 +215,42 @@
                 }
             }
         },
+        "plot": {
+            "title": "Plot Chart",
+            "config": {
+                "sample": {
+                    "label": "Sampling Points",
+                    "help": "X-Axis of this plot"
+                },
+                "fields": {
+                    "label": "Fields",
+                    "help": "Separated by commas"
+                },
+                "scales": {
+                    "label": "Scales",
+                    "help": "E.g. min max, min max, auto"
+                },
+                "limit": {
+                    "label": "Limit",
+                    "help": "Max number of events"
+                },
+                "name": {
+                    "label": "Name",
+                    "help": "Template for the hover series name, see documentation for more infos about templates."
+                },
+                "interpolation": {
+                    "label": "Interpolation",
+                    "linear": "Linear - straight lines between points",
+                    "step-after": "Step After - square steps from point to point",
+                    "cardinal": "Cardinal - smooth curves via cardinal splines (default)",
+                    "basis": "Basis - smooth curves via B-splines"
+                },
+                "fillEmpty": {
+                    "label": "Fill Empty",
+                    "help": "Fill when there is no events with zero values."
+                }
+            }
+        },
         "value": {
             "title": "Last Value",
             "config": {
@@ -222,12 +266,40 @@
                     "help": "Template for the label, see documentation for more infos about templates."
                 }
             }
+        },
+        "extremes": {
+            "title": "Extreme Values",
+            "config": {
+                "field": {
+                    "label": "Field"
+                },
+                "valueTemplate": {
+                    "label": "Value Template",
+                    "help": "Template for the value display, see documentation for more infos about templates."
+                },
+                "fieldTemplate": {
+                    "label": "Field Template",
+                    "help": "Template for the field, see documentation for more infos about templates."
+                }
+            }
         }
     },
     "settings": {
         "title": "Settings",
         "language": {
             "label": "Language"
+        },
+        "color": {
+            "label": "Color Scheme",
+            "scheme": {
+                "divergent": "Divergent",
+                "diverse": "Diverse",
+                "convergent": "Convergent",
+                "greens": "Greens"                
+            }
         }
+    },
+    "wipe": {
+        "title": "Are you sure you want to remove all events, reports, visualizations, and alerts?"
     }
 }
